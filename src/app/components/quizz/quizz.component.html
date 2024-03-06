@@ -1,0 +1,27 @@
+<div class="quizz">
+  <div class="logo">
+    <img src="../../../assets/img/logo.png" alt="">
+    <h3>{{ quizz.title }}</h3>
+  </div>
+
+  @if (finished) {
+    <div class="results">
+      <h1>Seu resultado é: </h1>
+      @if(A > B) {
+        <p>{{ quizz.results.A}}</p>
+      } @else {
+        <p>{{ quizz.results.B}}</p>
+      }
+    </div>
+  } @else {
+    <div class="questions">
+      <h3>{{ quizz.questions[questionIndex].question }}</h3>
+    </div>
+    <div class="options">
+      @for (option of quizz.questions[questionIndex].options; track option.id; let optionIndex = $index) {
+        <button type="button" class="btn-option" [class.active]="option.selected" (click)="optionSelected(questionIndex, optionIndex)">{{ option.name }}</button>
+      }
+    </div>
+  }
+
+</div>
